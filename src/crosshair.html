@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>Crosshair</title>
+  <script>
+    navigator.plugins.refresh(false);
+  </script>
+  <embed id='plugin' type='application/x-io-plugin' width=0px height=0px></embed>
+</head>
+
+<body>
+  <style>
+    html {
+      height: 100%;
+      width: 100%;
+      position: relative;
+    }
+    body {
+      overflow: hidden;
+    }
+
+    .orangeButton:hover {
+      background: rgb(56, 22, 10);
+      box-shadow: inset 1px 1px rgb(100, 24, 0), 1px 1px rgb(100, 24, 0);
+      border: solid 1px rgb(175, 96, 66);
+    }
+    .orangeButton {
+      background: transparent;
+      color: rgb(175, 96, 66);
+      text-shadow: 1px 1px black;
+      outline: none;
+      display: block;
+      border: solid 1px rgb(175, 96, 66);
+      text-align: center;
+      padding: 3px;
+      width: 140px;
+      -webkit-box-shadow: inset 1px 1px rgb(100, 24, 0), 1px 1px rgb(100, 24, 0);
+      font-weight: bold;
+    }
+
+    #minimize {
+      top: 2px;
+      left: 116px;
+      font-size: 15px;
+    }
+    #close {
+      top: 2px;
+      left: 138px;
+      font-size: 15px;
+      padding: 0px 3px 6px 3px;
+    }
+
+    /*  Crosshair  */
+
+    #CrosshairContainer {
+      overflow: hidden;
+      background: rgba(5, 5, 5, 0.5);
+      position: relative;
+      width: 150px;
+      height: 210px;
+      border: 5px solid transparent;
+      margin: 0 auto;
+      display: none;
+      -webkit-user-select: none;
+      color: rgb(250, 250, 250);
+      font-family: Helvetica;
+      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    /*   border-image: url('../images/box.png') 40% 15% 50% 15% stretch round;*/
+    }
+
+    #preview {
+      position: relative;
+      top: 10px;
+      margin: 0 auto;
+      left: 25px;
+    }
+    #form {
+      position: relative;
+    }
+    #adjustLabel {
+      position: absolute;
+      bottom: 30px;
+      left: 5px;
+      width: 100px;
+      overflow: hidden;
+    }
+    #recenter {
+      position: absolute;
+      bottom: 5px;
+      left: 25px;
+      width: 100px;
+      overflow: hidden;
+    }
+    #reticle {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      bottom: 10px;
+      left: 10px;
+    }
+    #drop {
+      position: relative;
+      top: 10px;
+      width: 125px;
+      left: 10px;
+      outline-color: #262626;
+      outline-width: thick;
+    }
+    #hide {
+      position: relative;
+      top: 10px;
+      width: 125px;
+      left: 10px;
+    }
+    #leftAdjust {
+      height: 10px;
+      width: 10px;
+      position: absolute;
+      bottom: 35px;
+      right: 25px;
+      z-index: 40;
+    }
+    #rightAdjust {
+      height: 10px;
+      width: 10px;
+      position: absolute;
+      right: 15px;
+      bottom: 35px;
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+      z-index: 40;
+    }
+    #downAdjust {
+      height: 10px;
+      width: 10px;
+      position: absolute;
+      -webkit-transform: rotate(270deg);
+      transform: rotate(270deg);
+      bottom: 32px;
+      right: 3px;
+      z-index: 40;
+    }
+    #upAdjust {
+      height: 10px;
+      width: 10px;
+      position: absolute;
+      -webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+      right: 2px;
+      bottom: 40px;
+      z-index: 40;
+    } 
+  </style>
+  <div id="CrosshairContainer">
+    <img src="../images/adjust.png" id="leftAdjust" class="noDrag" alt="left">
+    <img src="../images/adjust.png" id="rightAdjust" class="noDrag" alt="right">
+    <img src="../images/adjust.png" id="downAdjust" class="noDrag" alt="down">
+    <img src="../images/adjust.png" id="upAdjust" class="noDrag" alt="up">
+    <div id="form">
+      <select id="drop" class="noDrag">
+					<option value="default1"> Red Dot</option>
+					<option value="default2"> Big Yellow</option>
+					<option value="default3"> Small Green</option>
+					<option value="default4"> Tiny White</option>
+					<option value="default5"> Small Green (outline)</option>
+					<option value="default6"> Small Yellow (outline)</option>
+					<option value="default7"> Panda </option>
+					<option value="default8"> Tiny Red </option>
+          <option value="custom"> Custom </option>
+				</select>
+      <br>
+      <button id="hide" class="orangeButton noDrag">Select</button>
+    </div>
+    <div id="preview"> </div>
+    <button id="recenter" class="orangeButton noDrag">Recenter</button>
+    <div id="adjustLabel">Micro Adjust:</div>
+  </div>
+  <script src="./jquery-2.1.4.min.js"></script>
+  <script src="./crosshair.js"></script>
+</body>
+</html>
