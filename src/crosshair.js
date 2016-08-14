@@ -1,23 +1,6 @@
 (function(){
   
-  //@TODO: Find better image loading system?
-  //@TODO: Allow user to select personal crosshair?
-  
-  /*
-  overwolf.utils.openFilePicker(filter, callback)
-  Version added: 0.91.100
-  Opens a file picker dialog to browse for a file. A url to the selected file will be returned.
-  Permissions required: FileSystem
-  Parameter: filter   <string>
-  A file filter. Supports wild cards (*) and seperated by commas (,). Ex. myFile*.*,*.txt
-  Parameter: callback <function>
-  Called with a url to the selected file.
-  Callback argument:
-  {
-      "status": "success",
-      "url": "overwolf-fs://E/Video"
-  }
-  */
+  //@TODO: Allow user to save personal crosshair?
 
   var appPath = "";
   var selected = false;
