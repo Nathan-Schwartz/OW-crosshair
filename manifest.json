@@ -1,46 +1,59 @@
 {
-	"manifest_version":1,
-	"type":"WebApp",
-	"meta":{
-		"name":"X-hair",
-		"version":"0.0.1",
-		"minimum-overwolf-version":"0.91.00",
-		"author":"Nathan Schwartz",
-		"icon":"IconMouseOver.png",
-		"icon_gray":"IconMouseNormal.png",
-		"description":"Easy to use crosshairs for any game."
-	},
-	"permissions": ["Hotkeys", "GameInfo", "Logging", "Media", "Extensions", "FileSystem" ],
-	"data": {
-		"start_window":"Crosshair",
-		"windows":{
-			"Crosshair":{
-				"file":"src/crosshair.html",
-				"transparent":true,
-				"size":{"width":200, "height":300},
-				"show_in_taskbar": true,
-				"ignore_keyboard_events":true,
-				"grab_keyboard_focus": false,
-				"disable_restore_animation": true,
-				"in_game_only": false
-			}
-		},
-    "hotkeys" : {
-			"showHide": {
-				"title": "Show/Hide",
-				"action-type": "custom",
-				"default": "Num 8",
-				"passthrough": true
-			},
-      "close": {
-				"title": "Close",
-				"action-type": "custom",
-				"default": "Num 9",
-				"passthrough": true
-			}
+    "manifest_version":1,
+    "type":"WebApp",
+    "meta":{
+        "name":"X-hair",
+        "version":"0.0.1",
+        "minimum-overwolf-version":"0.91.00",
+        "author":"Nathan Schwartz",
+        "icon":"IconMouseOver.png",
+        "icon_gray":"IconMouseNormal.png",
+        "description":"Easy to use crosshairs for any game."
     },
-		"plugins": [
-			"npIOPlugin.dll",
-		]
-	}
+    "permissions":[
+        "Hotkeys",
+        "GameInfo",
+        "Logging",
+        "Media",
+        "Extensions",
+        "FileSystem"
+    ],
+    "data":{
+        "start_window":"Crosshair",
+        "windows":{
+            "Crosshair":{
+                "file":"src/crosshair.html",
+                "transparent":true,
+                "size":{
+                    "width":200,
+                    "height":300
+                },
+                "show_in_taskbar":true,
+                "ignore_keyboard_events":true,
+                "grab_keyboard_focus":false,
+                "disable_restore_animation":true,
+                "in_game_only":false
+            }
+        },
+        "hotkeys":{
+            "showHide":{
+                "title":"Show/Hide",
+                "action-type":"custom",
+                "default":"Num 8",
+                "passthrough":true
+            },
+            "close":{
+                "title":"Close",
+                "action-type":"custom",
+                "default":"Num 9",
+                "passthrough":true
+            }
+        },
+        "extra-objects":{
+            "simple-io-plugin":{
+                "file":"simple-io-plugin.dll",
+                "class":"overwolf.plugins.SimpleIOPlugin"
+            }
+        }
+    }
 }

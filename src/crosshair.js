@@ -2,6 +2,7 @@
   
   //@TODO: Allow user to save personal crosshair?
 
+  var plugin = new OverwolfPlugin("simple-io-plugin", true);
   var appPath = "";
   var selected = false;
   var windowID;
@@ -10,7 +11,6 @@
   $(document).ready(function(){
     init();
   });
-  
 
   // Listeners
   $("#drop").change(function(){setXPreview(document.getElementById("drop").value);});
@@ -58,7 +58,6 @@
     });
   });
 
-  
   // Initialize App stuffs.
   function init(){
     setXPreview(document.getElementById("drop").value);
@@ -94,11 +93,15 @@
       }
     });
 
-    // Use IO plugin if available
-    (plugin() == null) 
-      ? console.log("Plugin couldn't be loaded??") 
-      : getMyWebAppDirectory(getDirectory);
+    plugin.initialize(function(status) {
+		  if (status == true) {
+        getMyWebAppDirectory(getDirectory);
+      } else {
+        console.log("Plugin couldn't be loaded?");
+		  }
+		});
   }
+
   
   
   
@@ -127,16 +130,12 @@
     overwolf.windows.dragResize(windowID, edge);
   };
 
-
   // IO Plugin helpers
-  function plugin() {
-    return document.querySelector('#plugin');
-  }
-  function getDirectory(mypath, status){
+  function getDirectory(mypath, status=0){
     appPath = mypath;
   };
   function getMyWebAppDirectory(callback) {
-    var mypath = plugin().LOCALAPPDATA + "\\Overwolf\\Extensions";
+    var mypath = plugin.get().LOCALAPPDATA + "\\Overwolf\\Extensions";
     var fallback = function() {
       var pluginStr = window.location.host;
       pluginStr = pluginStr.replace("Window_Extension_", "");
@@ -159,7 +158,7 @@
       } else {
         mypath += "\\" + manifestObj.UID + "\\" + manifestObj.meta.version;
       }
-      plugin().isDirectory( 
+      plugin.get().isDirectory( 
         mypath, 
         function(status) {
           callback(mypath, status);
@@ -167,7 +166,7 @@
       );
     });
   };
- 
+
   // Set preview crosshair to new image.
   function setXPreview(value, name){
     switch(value){
